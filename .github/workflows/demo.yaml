@@ -35,6 +35,10 @@ jobs:
           status: completed
           output_title: My Check Results
           output_summary: Summary of my **check results** (*Markdown supported*)
+          output_annotations: |
+            [
+              { "path":"README.md", "annotation_level":"warning", "title":"Title of my warning check", "message":"Message abc.", "start_line":1,"end_line":2 }
+            ]
 
 #   annotations:
 #     name: Example with annotations
