@@ -12721,6 +12721,10 @@ async function run() {
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
     }
+    const outputImages = core.getInput("output_annotations")
+    if (outputImages != "") {
+      outputImages = parseJson(core.getInput("output_annotations"))
+    }
 
     // Create or update check run
     if (core.getInput("check_run_id")) {
@@ -12736,7 +12740,8 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          annotations: outputAnnotations
+          outputAnnotations,
+          outputImages
         },
       })
     } else {
@@ -12752,7 +12757,8 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          annotations: outputAnnotations
+          outputAnnotations,
+          outputImages
         },
       })
     }
