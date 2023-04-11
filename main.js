@@ -16,7 +16,10 @@ async function run() {
     const outputTitle = core.getInput("output_title")
     const outputSummary = core.getInput("output_summary")
     const outputText = core.getInput("output_text")
-    const outputannotations = parseJson(core.getInput("output_annotations"))
+    const outputAnnotations = core.getInput("output_annotations")
+    if (outputAnnotations != "") {
+      outputAnnotations = parseJson(core.getInput("output_annotations"))
+    }
 
     // Create or update check run
     if (core.getInput("check_run_id")) {
@@ -32,7 +35,7 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          annotations: outputannotations
+          annotations: outputAnnotations
         },
       })
     } else {
@@ -48,7 +51,7 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          annotations: outputannotations
+          annotations: outputAnnotations
         },
       })
     }
