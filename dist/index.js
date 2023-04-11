@@ -12725,7 +12725,7 @@ async function run() {
     }
     var outputImages = core.getInput("output_annotations")
     if (outputImages != "") {
-      outputImages = parseJson(core.getInput("output_annotations"))
+      outputImages = parseJson(core.getInput("output_images"))
     } else {
       outputImages = []
     }
