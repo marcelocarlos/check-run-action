@@ -12717,11 +12717,11 @@ async function run() {
     const outputTitle = core.getInput("output_title")
     const outputSummary = core.getInput("output_summary")
     const outputText = core.getInput("output_text")
-    const outputAnnotations = core.getInput("output_annotations")
+    var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
     }
-    const outputImages = core.getInput("output_annotations")
+    var outputImages = core.getInput("output_annotations")
     if (outputImages != "") {
       outputImages = parseJson(core.getInput("output_annotations"))
     }
