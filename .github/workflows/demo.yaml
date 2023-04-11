@@ -111,3 +111,4 @@ jobs:
           status: completed
           output_title: My Check completed
           output_summary: '*completed*'
+          output_text: Details of my **check results** (*Markdown supported*)
