@@ -29,39 +29,40 @@ jobs:
           status: completed
           output_title: My Check Results
           output_summary: Summary of my **check results** (*Markdown supported*)
+          output_text: Details of my **check results** (*Markdown supported*)
 
-#   annotations:
-#     name: Example with annotations
-#     runs-on: ubuntu-latest
+  annotations:
+    name: Example with annotations
+    runs-on: ubuntu-latest
 
-#     permissions:
-#       contents: read
-#       checks: write
+    permissions:
+      contents: read
+      checks: write
 
-#     steps:
-#       - name: Check out code
-#         uses: actions/checkout@v3
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
 
-#       - name: Add check run with annotations
-#         uses: marcelocarlos/check-run-action@main
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           name: My Check Results with annotations
-#           conclusion: success
-#           status: completed
-#           output_title: My Check Results with annotations
-#           output_summary: Summary of my **check results** (*Markdown supported*)
-#           output_text: Details of my **check results** (*Markdown supported*)
-#           output_annotations: |
-#             [
-#               { "path":"README.md", "annotation_level":"warning", "title":"Title of my warning check", "message":"Message abc.", "start_line":1,"end_line":2 },
-#               { "path":"README.md", "annotation_level":"failure", "title":"Title of failure check", "message":"Message xyz.", "start_line":3,"end_line":5 },
-#               { "path":"README.md", "annotation_level":"notice", "title":"Title of notice check", "message":"Message notice test.", "start_line":8,"end_line":9, "raw_details":"Raw notice details here" }
-#             ]
-#           output_images: |
-#             [
-#               { "alt":"My image", "caption":"Image description", "image_url":"https://fastly.picsum.photos/id/43/200/200.jpg?hmac=gMoEYpdjrHoRnKoyIdtTknuqyCQDTC8exwLaKHpMv6E"}
-#             ]
+      - name: Add check run with annotations
+        uses: marcelocarlos/check-run-action@pr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: My Check Results with annotations
+          conclusion: success
+          status: completed
+          output_title: My Check Results with annotations
+          output_summary: Summary of my **check results** (*Markdown supported*)
+          output_text: Details of my **check results** (*Markdown supported*)
+          output_annotations: |
+            [
+              { "path":"README.md", "annotation_level":"warning", "title":"Title of my warning check", "message":"Message abc.", "start_line":1,"end_line":2 },
+              { "path":"README.md", "annotation_level":"failure", "title":"Title of failure check", "message":"Message xyz.", "start_line":3,"end_line":5 },
+              { "path":"README.md", "annotation_level":"notice", "title":"Title of notice check", "message":"Message notice test.", "start_line":8,"end_line":9, "raw_details":"Raw notice details here" }
+            ]
+          output_images: |
+            [
+              { "alt":"My image", "caption":"Image description", "image_url":"https://fastly.picsum.photos/id/43/200/200.jpg?hmac=gMoEYpdjrHoRnKoyIdtTknuqyCQDTC8exwLaKHpMv6E"}
+            ]
 
 #   multistep:
 #     name: Example multi-step
@@ -74,7 +75,7 @@ jobs:
 #     steps:
 #       - name: Queue check run multi-step
 #         id: queued
-#         uses: marcelocarlos/check-run-action@main
+#         uses: marcelocarlos/check-run-action@pr
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
 #           name: My Check Results multi-step
@@ -87,7 +88,7 @@ jobs:
 #         run: sleep 15
 
 #       - name: In progress check run multi-step
-#         uses: marcelocarlos/check-run-action@main
+#         uses: marcelocarlos/check-run-action@pr
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
 #           name: My Check Results
@@ -101,7 +102,7 @@ jobs:
 #         run: sleep 15
 
 #       - name: In progress check run multi-step
-#         uses: marcelocarlos/check-run-action@main
+#         uses: marcelocarlos/check-run-action@pr
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
 #           name: My Check Results multi-step
