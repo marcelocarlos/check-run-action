@@ -12725,7 +12725,7 @@ async function run() {
     if (outputImages != "") {
       outputImages = parseJson(core.getInput("output_annotations"))
     }
-
+    var res
     // Create or update check run
     if (core.getInput("check_run_id")) {
       // update check run
