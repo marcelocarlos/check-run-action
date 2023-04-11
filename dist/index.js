@@ -12766,7 +12766,7 @@ async function run() {
         },
       })
     }
-    core.setOutput("check_run_id", res.id)
+    core.setOutput("check_run_id", res.data.id)
   } catch (error) {
     core.setFailed(error.message);
   }

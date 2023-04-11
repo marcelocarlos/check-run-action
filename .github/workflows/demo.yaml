@@ -61,7 +61,7 @@ jobs:
             ]
           output_images: |
             [
-              { "alt":"My image", "caption":"Image description", "image_url":"https://fastly.picsum.photos/id/43/200/200.jpg?hmac=gMoEYpdjrHoRnKoyIdtTknuqyCQDTC8exwLaKHpMv6E"}
+              { "alt":"My image", "caption":"Image description", "image_url": "https://fastly.picsum.photos/id/43/200/200.jpg?hmac=gMoEYpdjrHoRnKoyIdtTknuqyCQDTC8exwLaKHpMv6E" }
             ]
 
   multistep:
