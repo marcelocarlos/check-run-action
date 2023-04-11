@@ -57,7 +57,7 @@ jobs:
             [
               { "path":"README.md", "annotation_level":"warning", "title":"Title of my warning check", "message":"Message abc.", "start_line":1,"end_line":2 },
               { "path":"README.md", "annotation_level":"failure", "title":"Title of failure check", "message":"Message xyz.", "start_line":3,"end_line":5 },
-              { "path":"README.md", "annotation_level":"notice", "title":"Title of notice check", "message":"Message notice test.", "start_line":8,"end_line":9, "raw_details":"Raw notice details here" }
+              { "path":"README.md", "annotation_level":"notice", "title":"Title of notice check", "message":"Message notice test.", "start_line":16,"end_line":18, "raw_details":"Raw notice details here" }
             ]
           output_images: |
             [
@@ -91,7 +91,7 @@ jobs:
         uses: marcelocarlos/check-run-action@pr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: My Check Results
+          name: My Check Results multi-step
           check_run_id: ${{ steps.queued.outputs.check_run_id }}
           conclusion: success
           status: in_progress
