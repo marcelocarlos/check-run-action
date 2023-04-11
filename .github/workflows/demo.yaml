@@ -9,9 +9,9 @@ on:
 
   workflow_dispatch:
 
-# concurrency:
-#   group: '${{ github.workflow }}-${{ github.head_ref || github.ref }}'
-#   cancel-in-progress: true
+concurrency:
+  group: '${{ github.workflow }}-${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
 
 jobs:
   minimalist:
@@ -26,19 +26,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: test
-        run: |
-          echo "test"
-
-#       - name: Add check run
-#         uses: marcelocarlos/check-run-action@main
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           name: My Check Results
-#           conclusion: success
-#           status: completed
-#           output_title: My Check Results
-#           output_summary: Summary of my **check results** (*Markdown supported*)
+      - name: Add check run
+        uses: marcelocarlos/check-run-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: My Check Results
+          conclusion: success
+          status: completed
+          output_title: My Check Results
+          output_summary: Summary of my **check results** (*Markdown supported*)
 
 #   annotations:
 #     name: Example with annotations
