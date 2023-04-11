@@ -14,6 +14,7 @@ Action to [add check runs](https://docs.github.com/en/rest/checks/runs?apiVersio
 
 <!-- tocstop -->
 
+
 ## Making changes to this action
 
 When making changes to this action, run `npm install` followed by `npm run build` to recompile the distribution files before pushing the changes.
