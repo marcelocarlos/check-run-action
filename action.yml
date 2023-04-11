@@ -34,9 +34,11 @@ inputs:
   output_annotations:
     description: Information from your analysis to specific lines of code. Input must be in a JSON list format.
     required: false
+    default: ''
   output_images:
     description: Adds images to the output displayed in the GitHub pull request UI.
     required: false
+    default: ''
 
 outputs:
   check_run_id:
