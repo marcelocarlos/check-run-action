@@ -12740,8 +12740,8 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          outputAnnotations,
-          outputImages
+          annotations: outputAnnotations,
+          images: outputImages
         },
       })
     } else {
@@ -12757,8 +12757,8 @@ async function run() {
           title: outputTitle,
           summary: outputSummary,
           text: outputText,
-          outputAnnotations,
-          outputImages
+          annotations: outputAnnotations,
+          images: outputImages
         },
       })
     }
