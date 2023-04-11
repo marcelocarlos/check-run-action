@@ -19,6 +19,8 @@ async function run() {
     const outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
+    } else {
+      outputAnnotations = "{}"
     }
 
     // Create or update check run
