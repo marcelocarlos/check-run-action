@@ -12720,10 +12720,14 @@ async function run() {
     var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
+    } else {
+      outputAnnotations = []
     }
     var outputImages = core.getInput("output_annotations")
     if (outputImages != "") {
       outputImages = parseJson(core.getInput("output_annotations"))
+    } else {
+      outputImages = []
     }
     var res
     // Create or update check run
