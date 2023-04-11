@@ -12,9 +12,9 @@ jobs:
     name: Minimalist Example
     runs-on: ubuntu-latest
 
-#     permissions:
-#       contents: read
-#       checks: write
+    permissions:
+      contents: read
+      checks: write
 
     steps:
       - name: Check out code
