@@ -1,0 +1,49 @@
+---
+name: Create a check run
+author: Marcelo Carlos <contact@marcelocarlos.com>
+description: Creates a check run on a commit
+
+inputs:
+  token:
+    description: GitHub token
+    required: true
+  name:
+    description: Name of the check run
+    required: true
+  status:
+    description: The current status. Valid values are queued, in_progress, completed
+    required: false
+    default: 'queued'
+  check_run_id:
+    description: The unique identifier of the check run
+    required: false
+    default: ''
+  conclusion:
+    description: Required if you provide a status of 'completed'. Valid values are action_required, cancelled, failure, neutral, success, skipped, stale, timed_out
+    required: false
+    default: 'neutral'
+  output_title:
+    description: Title of the check run
+    required: true
+  output_summary:
+    description: Summary of the check run with a maximum of 65535 characters (markdown supported)
+    required: true
+  output_text:
+    description: Details (body) of the check run with a maximum of 65535 characters (markdown supported)
+    required: false
+  output_annotations:
+    description: Information from your analysis to specific lines of code. Input must be in a JSON list format.
+    required: false
+    default: ''
+  output_images:
+    description: Adds images to the output displayed in the GitHub pull request UI.
+    required: false
+    default: ''
+
+outputs:
+  check_run_id:
+    description: 'ID of the check created'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
