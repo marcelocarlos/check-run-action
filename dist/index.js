@@ -12720,7 +12720,7 @@ async function run() {
     var outputTitle = core.getInput("output_title")
     var outputSummary = core.getInput("output_summary")
 
-    var outText = core.getInput("output_text") != "" ? core.getInput("output_text") : external_fs_.readFileSync(core.getInput("output_source_file"), 'utf8')
+    var outputText = core.getInput("output_text") != "" ? core.getInput("output_text") : external_fs_.readFileSync(core.getInput("output_source_file"), 'utf8')
 
     var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
