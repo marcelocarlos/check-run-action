@@ -12698,7 +12698,10 @@ function parseJson(string, reviver, filename) {
 	}
 }
 
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(7147);
 ;// CONCATENATED MODULE: ./main.js
+
 
 
 
@@ -12716,7 +12719,9 @@ async function run() {
     var conclusion = core.getInput("conclusion")
     var outputTitle = core.getInput("output_title")
     var outputSummary = core.getInput("output_summary")
-    var outputText = core.getInput("output_text")
+
+    var outputText = core.getInput("output_text") != "" ? core.getInput("output_text") : external_fs_.readFileSync(core.getInput("output_source_file"), 'utf8')
+
     var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
@@ -12743,7 +12748,7 @@ async function run() {
         output: {
           title: outputTitle,
           summary: outputSummary,
-          text: outputText,
+          text: outText,
           annotations: outputAnnotations,
           images: outputImages
         },
