@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import parseJson from 'parse-json';
+import parseJson from 'parse-json'
+import * as fs from 'fs'
 
 async function run() {
   try {
@@ -15,7 +16,9 @@ async function run() {
     var conclusion = core.getInput("conclusion")
     var outputTitle = core.getInput("output_title")
     var outputSummary = core.getInput("output_summary")
-    var outputText = core.getInput("output_text")
+
+    var outText = core.getInput("output_text") != "" ? core.getInput("output_text") : fs.readFileSync(core.getInput("output_source_file"), 'utf8')
+
     var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
       outputAnnotations = parseJson(core.getInput("output_annotations"))
@@ -42,7 +45,7 @@ async function run() {
         output: {
           title: outputTitle,
           summary: outputSummary,
-          text: outputText,
+          text: outText,
           annotations: outputAnnotations,
           images: outputImages
         },

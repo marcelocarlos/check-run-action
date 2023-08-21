@@ -31,6 +31,10 @@ inputs:
   output_text:
     description: Details (body) of the check run with a maximum of 65535 characters (markdown supported)
     required: false
+  output_source_file:
+    description: Path to a file containing the output to be used instead of using `output_text`). Only used if `output_text` is not set.
+    required: false
+    default: ''
   output_annotations:
     description: Information from your analysis to specific lines of code. Input must be in a JSON list format.
     required: false
