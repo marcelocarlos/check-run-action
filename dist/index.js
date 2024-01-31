@@ -12720,7 +12720,12 @@ async function run() {
     var outputTitle = core.getInput("output_title")
     var outputSummary = core.getInput("output_summary")
 
-    var outputText = core.getInput("output_text") != "" ? core.getInput("output_text") : external_fs_.readFileSync(core.getInput("output_source_file"), 'utf8')
+    var outputText = ""
+    if (core.getInput("output_text") != "") {
+      outputText = core.getInput("output_text")
+    } else if (core.getInput("output_source_file") != "") {
+      outputText = external_fs_.readFileSync(core.getInput("output_source_file"), 'utf8')
+    }
 
     var outputAnnotations = core.getInput("output_annotations")
     if (outputAnnotations != "") {
@@ -12748,7 +12753,7 @@ async function run() {
         output: {
           title: outputTitle,
           summary: outputSummary,
-          text: outText,
+          text: outputText,
           annotations: outputAnnotations,
           images: outputImages
         },
