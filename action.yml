@@ -49,5 +49,5 @@ outputs:
     description: 'ID of the check created'
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
