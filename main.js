@@ -45,7 +45,7 @@ async function run() {
         output: {
           title: outputTitle,
           summary: outputSummary,
-          text: outText,
+          text: outputText,
           annotations: outputAnnotations,
           images: outputImages
         },
