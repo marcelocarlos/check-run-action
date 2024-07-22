@@ -57,7 +57,49 @@ In addition to the basic usage above, you can also make use of more advanced out
             ]
 ```
 
-For more advanced examples, check the [demo.yaml](./.github/workflows/demo.yaml) workflow.
+You can also use multiple steps to update the status of the check:
+
+```yaml
+      - name: Queue check run multi-step
+        id: queued
+        uses: marcelocarlos/check-run-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: My Check Results multi-step
+          conclusion: success
+          status: queued
+          output_title: My Check queued
+          output_summary: '*queued*'
+
+      - name: Wait for in_progress
+        run: sleep 15
+
+      - name: In progress check run multi-step
+        uses: marcelocarlos/check-run-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: My Check Results multi-step
+          check_run_id: ${{ steps.queued.outputs.check_run_id }}
+          conclusion: success
+          status: in_progress
+          output_title: My Check in_progress multi-step
+          output_summary: '*in_progress*'
+
+      - name: Wait for completed
+        run: sleep 15
+
+      - name: In progress check run multi-step
+        uses: marcelocarlos/check-run-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: My Check Results multi-step
+          check_run_id: ${{ steps.queued.outputs.check_run_id }}
+          conclusion: success
+          status: completed
+          output_title: My Check completed
+          output_summary: '*completed*'
+          output_text: Details of my **check results** (*Markdown supported*)
+```
 
 ## 🧑‍💻 Making changes to this action
 
