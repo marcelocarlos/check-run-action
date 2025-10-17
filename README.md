@@ -57,6 +57,31 @@ In addition to the basic usage above, you can also make use of more advanced out
             ]
 ```
 
+### Using files as output
+
+Instead of providing the output text inline, you can read it from a file. This is useful for large outputs like test results or Terraform plans:
+
+```yaml
+      - name: Run Terraform Plan
+        run: terraform plan -no-color > /tmp/plan.txt
+
+      - name: Post Terraform Plan as Check Run
+        uses: marcelocarlos/check-run-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Terraform Plan Results
+          conclusion: success
+          status: completed
+          output_title: Infrastructure Changes
+          output_summary: Terraform plan output for staging environment
+          output_source_file: /tmp/plan.txt
+          output_source_file_syntax: terraform  # Wraps content in ```terraform code block
+```
+
+**Available syntax options:** `terraform`, `json`, `yaml`, `bash`, `python`, `javascript`, `typescript`, `diff`, etc. Leave empty for no code block.
+
+## Advanced usage
+
 You can also use multiple steps to update the status of the check:
 
 ```yaml

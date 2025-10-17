@@ -42,33 +42,6 @@ async function run() {
       outputImages = []
     }
 
-    // Auto-detect check suite to group check runs correctly
-    var checkSuiteId = null
-    try {
-      const octokit = github.getOctokit(core.getInput("token"))
-      const { data: checkSuites } = await octokit.rest.checks.listSuitesForRef({
-        owner: owner,
-        repo: repo,
-        ref: head_sha
-      })
-
-      // Find the most recent in-progress suite for this workflow
-      const activeSuites = checkSuites.check_suites
-        .filter(suite =>
-          suite.app.slug === 'github-actions' &&
-          suite.head_sha === head_sha &&
-          (suite.status === 'queued' || suite.status === 'in_progress')
-        )
-        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-
-      if (activeSuites.length > 0) {
-        checkSuiteId = activeSuites[0].id
-        core.info(`Associated with check suite ${checkSuiteId}`)
-      }
-    } catch (error) {
-      core.warning(`Failed to detect check suite: ${error.message}`)
-    }
-
     var res
     // Create or update check run
     if (core.getInput("check_run_id")) {
@@ -90,7 +63,7 @@ async function run() {
       })
     } else {
       // create check run
-      const createParams = {
+      res = await github.getOctokit(core.getInput("token")).rest.checks.create({
         owner: owner,
         repo: repo,
         head_sha: head_sha,
@@ -104,11 +77,7 @@ async function run() {
           annotations: outputAnnotations,
           images: outputImages
         },
-      }
-      if (checkSuiteId) {
-        createParams.check_suite_id = checkSuiteId
-      }
-      res = await github.getOctokit(core.getInput("token")).rest.checks.create(createParams)
+      })
     }
     core.setOutput("check_run_id", res.data.id)
   } catch (error) {
