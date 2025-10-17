@@ -22,6 +22,11 @@ async function run() {
       outputText = core.getInput("output_text")
     } else if (core.getInput("output_source_file") != "") {
       outputText = fs.readFileSync(core.getInput("output_source_file"), 'utf8')
+      // Optionally wrap in code block with syntax highlighting
+      const syntax = core.getInput("output_source_file_syntax")
+      if (syntax) {
+        outputText = "```" + syntax + "\n" + outputText + "\n```"
+      }
     }
 
     var outputAnnotations = core.getInput("output_annotations")
@@ -46,14 +51,22 @@ async function run() {
         repo: repo,
         ref: head_sha
       })
-      const currentSuite = checkSuites.check_suites.find(
-        suite => suite.app.slug === 'github-actions' && suite.head_sha === head_sha
-      )
-      if (currentSuite) {
-        checkSuiteId = currentSuite.id
+
+      // Find the most recent in-progress suite for this workflow
+      const activeSuites = checkSuites.check_suites
+        .filter(suite =>
+          suite.app.slug === 'github-actions' &&
+          suite.head_sha === head_sha &&
+          (suite.status === 'queued' || suite.status === 'in_progress')
+        )
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+
+      if (activeSuites.length > 0) {
+        checkSuiteId = activeSuites[0].id
+        core.info(`Associated with check suite ${checkSuiteId}`)
       }
     } catch (error) {
-      // Ignore - check runs will still work without suite association
+      core.warning(`Failed to detect check suite: ${error.message}`)
     }
 
     var res

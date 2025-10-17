@@ -35,6 +35,10 @@ inputs:
     description: Path to a file containing the output to be used instead of using `output_text`). Only used if `output_text` is not set.
     required: false
     default: ''
+  output_source_file_syntax:
+    description: Syntax highlighting for code block when using output_source_file (e.g. terraform, json, yaml). Leave empty for no code block.
+    required: false
+    default: ''
   output_annotations:
     description: Information from your analysis to specific lines of code. Input must be in a JSON list format.
     required: false
